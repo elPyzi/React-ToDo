@@ -1,12 +1,33 @@
 import './App.scss';
+import ToDo from './components/ToDo';
+import AsideBar from './components/AsideBar';
+import Settings from './components/Settings';
+import { useState } from 'react';
 
 function App() {
-    const a = 3;
-    console.log(a);
+    const [toDo, setToDo] = useState(true);
+    const [settings, setSettings] = useState(false);
+
+    const handleToDo = () => {
+        setToDo(true);
+        setSettings(false);
+    };
+
+    const handleSettings = (currentState) => {
+        setSettings(currentState);
+        setToDo(!currentState);
+    };
+
     return (
-        <>
-            <h1>ddd</h1>
-        </>
+        <div className="app">
+            <AsideBar
+                className="aside-bar"
+                handleToDo={handleToDo}
+                handleSettings={handleSettings}
+            />
+            {toDo && <ToDo className="to-do" />}
+            {settings && <Settings />}
+        </div>
     );
 }
 

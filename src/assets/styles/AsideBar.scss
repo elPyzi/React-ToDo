@@ -1,0 +1,105 @@
+@import 'colors';
+
+.aside-bar-container {
+    background-color: $color-bg;
+    min-width: 20vw;
+    height: 100vh;
+}
+.header {
+    padding: 20px;
+    margin-bottom: 20px;
+
+    .header__avatar {
+        width: 75px;
+        height: 75px;
+    }
+
+    .header__avatar-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    .header__user-info {
+        padding-bottom: 40px;
+        border-bottom: 4px solid $color-content;
+        display: grid;
+        grid-template-areas:
+            'avatar username'
+            'avatar userstatus';
+    }
+
+    .header__userName {
+        grid-area: username;
+        align-self: end;
+
+        color: $active-menu-item;
+        font-weight: 500;
+        font-size: 16px;
+    }
+
+    .header__status {
+        grid-area: userstatus;
+        color: $color-content;
+        font-size: 24px;
+    }
+
+    .header__status:hover::after {
+        content: '🍎';
+    }
+
+    .header__avatar {
+        grid-area: avatar;
+    }
+}
+
+.aside-bar__main {
+    padding: 20px;
+}
+
+@mixin btn-style($svg-link, $active: null) {
+    font-size: 24px;
+
+    color: $none-active-menu-item;
+    &::before {
+        display: inline-flex;
+        content: '';
+        background-image: url($svg-link);
+        height: 24px;
+        width: 24px;
+    }
+
+    @if $active {
+        &::before {
+            display: inline-flex;
+            content: '';
+            background-image: url($svg-link);
+            height: 24px;
+            width: 24px;
+        }
+        color: $active-menu-item;
+    }
+}
+
+.type-task {
+    margin-bottom: 30px;
+    .type-task__btn-toDo {
+        @include btn-style('../images/today.svg');
+    }
+    .type-task__btn-toDo.active {
+        @include btn-style('../images/today.svg', 'active');
+    }
+}
+.btn-settings {
+    @include btn-style('../images/settings.svg');
+}
+
+.btn-settings.active {
+    @include btn-style('../images/settings.svg', 'active');
+}
+
+// * {
+//     border: 1px solid black;
+// }

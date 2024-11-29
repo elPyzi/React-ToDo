@@ -1,0 +1,9 @@
+@import 'colors';
+
+.to-do-container {
+    background-color: $color-content;
+    min-width: 80vw;
+    height: 100vh;
+    border: 7px solid $color-bg;
+    border-radius: 5px;
+}
