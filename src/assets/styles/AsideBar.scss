@@ -1,4 +1,4 @@
-@import 'colors';
+@use 'colors' as *;
 
 .aside-bar-container {
     background-color: $color-bg;
@@ -61,8 +61,8 @@
 
 @mixin btn-style($svg-link, $active: null) {
     font-size: 24px;
+    color: if($active, $active-menu-item, $none-active-menu-item);
 
-    color: $none-active-menu-item;
     &::before {
         display: inline-flex;
         content: '';
@@ -70,36 +70,20 @@
         height: 24px;
         width: 24px;
     }
-
-    @if $active {
-        &::before {
-            display: inline-flex;
-            content: '';
-            background-image: url($svg-link);
-            height: 24px;
-            width: 24px;
-        }
-        color: $active-menu-item;
-    }
 }
 
 .type-task {
-    margin-bottom: 30px;
+    margin-block-end: 30px;
     .type-task__btn-toDo {
         @include btn-style('../images/today.svg');
-    }
-    .type-task__btn-toDo.active {
-        @include btn-style('../images/today.svg', 'active');
+        &.active {
+            @include btn-style('../images/today.svg', 'active');
+        }
     }
 }
 .btn-settings {
     @include btn-style('../images/settings.svg');
+    &.active {
+        @include btn-style('../images/settings.svg', 'active');
+    }
 }
-
-.btn-settings.active {
-    @include btn-style('../images/settings.svg', 'active');
-}
-
-// * {
-//     border: 1px solid black;
-// }

@@ -4,7 +4,7 @@ import '../assets/styles/AsideBar.scss';
 import Avatar from './Avatar';
 import MarkerList from './MarkersList';
 
-function AsideBar({ handleToDo, handleSettings }) {
+function AsideBar({ getAsideAction }) {
     const [userName, setUserName] = useState(
         localStorage.getItem('name') || 'John Doe',
     );
@@ -15,13 +15,8 @@ function AsideBar({ handleToDo, handleSettings }) {
     const [activeBtn, setActiveBtn] = useState('todo');
 
     const handleAsideBtns = (asidebtn) => {
-        if (asidebtn === 'todo') {
-            handleToDo();
-            setActiveBtn('todo');
-        } else {
-            handleSettings(true);
-            setActiveBtn('settings');
-        }
+        getAsideAction(asidebtn)();
+        setActiveBtn(asidebtn);
     };
 
     return (
@@ -62,8 +57,7 @@ function AsideBar({ handleToDo, handleSettings }) {
 }
 
 AsideBar.propTypes = {
-    handleToDo: PropTypes.func.isRequired,
-    handleSettings: PropTypes.func.isRequired,
+    getAsideAction: PropTypes.func.isRequired,
 };
 
 export default AsideBar;

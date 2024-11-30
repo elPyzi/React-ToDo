@@ -8,24 +8,24 @@ function App() {
     const [toDo, setToDo] = useState(true);
     const [settings, setSettings] = useState(false);
 
-    const handleToDo = () => {
-        setToDo(true);
-        setSettings(false);
-    };
-
-    const handleSettings = (currentState) => {
-        setSettings(currentState);
-        setToDo(!currentState);
+    const getAsideAction = (button) => {
+        const actions = {
+            todo: () => {
+                setToDo(true);
+                setSettings(false);
+            },
+            settings: () => {
+                setSettings(true);
+                setToDo(false);
+            },
+        };
+        return actions[button];
     };
 
     return (
         <div className="app">
-            <AsideBar
-                className="aside-bar"
-                handleToDo={handleToDo}
-                handleSettings={handleSettings}
-            />
-            {toDo && <ToDo className="to-do" />}
+            <AsideBar getAsideAction={getAsideAction} />
+            {toDo && <ToDo />}
             {settings && <Settings />}
         </div>
     );
