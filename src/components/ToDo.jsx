@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import '../assets/styles/ToDo.scss';
-import ListTasks from './ListTasks';
 
 function ToDo() {
     const [task, setTask] = useState('');
     const [time, setTime] = useState('00:00');
+    const [done, setDone] = useState(false);
 
     const addTask = () => {
         const newTask = {
@@ -48,7 +48,17 @@ function ToDo() {
                         </button>
                     </div>
                 </div>
-                <ListTasks />
+                <ul className="to-do__container-tasks">
+                    <li className="to-do__task">
+                        <div className="to-do__title"></div>
+                        <div className="to-do__task-text"></div>
+                        <div className="to-do__task-time"></div>
+                        <button
+                            type="button"
+                            className={`to-do__done ${done === true ? 'done' : ''}`}
+                        ></button>
+                    </li>
+                </ul>
             </div>
         </div>
     );
