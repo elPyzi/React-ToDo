@@ -5,12 +5,8 @@ import Avatar from './Avatar';
 import MarkerList from './MarkersList';
 
 function AsideBar({ getAsideAction }) {
-    const [userName, setUserName] = useState(
-        localStorage.getItem('name') || 'John Doe',
-    );
-    const [userStatus, setUserStatus] = useState(
-        localStorage.getItem('status') || 'Love apples',
-    );
+    const userName = 'John Doe';
+    const userStatus = 'Love apples';
 
     const [activeBtn, setActiveBtn] = useState('todo');
 

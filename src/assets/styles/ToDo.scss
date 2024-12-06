@@ -1,9 +1,89 @@
-@import 'colors';
+@use 'colors' as *;
 
-.to-do-container {
+@mixin filter-item($color) {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: $color;
+}
+
+.to-do {
     background-color: $color-content;
     min-width: 80vw;
     height: 100vh;
     border: 7px solid $color-bg;
     border-radius: 5px;
+    padding: 5%;
+    font-size: 18px;
+
+    .to-do__heading,
+    .to-do__slogan {
+        color: $color-bg;
+    }
+
+    .to-do__heading {
+        opacity: 0.8;
+    }
+
+    .to-do__slogan {
+        font-size: 48px;
+        margin-bottom: 50px;
+    }
+    .to-do__tasks-container {
+        margin: auto;
+    }
+
+    .to-do__input-container {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        width: 60%;
+        padding: 14px 17px;
+        border-radius: 10px;
+        background-color: $color-bg;
+
+        .to-do__filter {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+
+            .to-do__filter-item:nth-child(1) {
+                @include filter-item(map-get($title-colors, item1));
+            }
+
+            .to-do__filter-item:nth-child(2) {
+                @include filter-item(map-get($title-colors, item2));
+            }
+
+            .to-do__filter-item:nth-child(3) {
+                @include filter-item(map-get($title-colors, item3));
+            }
+        }
+
+        .to-do_input {
+            background-color: inherit;
+            width: 100%;
+            font-size: inherit;
+            padding: 1%;
+
+            &::placeholder {
+                font-size: inherit;
+                vertical-align: bottom;
+            }
+        }
+
+        .to-do__actions {
+            display: flex;
+            gap: 15px;
+
+            .to-do__time {
+                background-color: inherit;
+                font-size: 18px;
+            }
+        }
+    }
 }
+
+// * {
+//     border: 1px solid darkmagenta;
+// }

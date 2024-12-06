@@ -6,8 +6,10 @@ $active-menu-item: #464646;
 $none-active-menu-item: #8c8c8c;
 
 // Цвета список
-$item1: #77898b;
-$item2: #852614;
-$item3: #c85f31;
-$item4: #d8cdb5;
-$item5: #cab181;
+$title-colors: (
+    item1: #77898b,
+    item2: #852614,
+    item3: #c85f31,
+    item4: #d8cdb5,
+    item5: #cab181,
+);

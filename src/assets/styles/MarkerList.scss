@@ -1,0 +1,61 @@
+@use 'colors' as color;
+
+.title-list-tasks {
+    padding: 30px 0px 20px 20px;
+    font-size: 18px;
+    position: relative;
+
+    .title-list-tasks__title {
+        margin-bottom: 20px;
+        &::before {
+            content: '';
+            border-radius: 50%;
+            width: 14px;
+            height: 14px;
+
+            display: inline-flex;
+            margin-right: 10px;
+            vertical-align: baseline;
+        }
+
+        @for $i from 1 through 5 {
+            &:nth-child(#{$i})::before {
+                background-color: map-get(color.$title-colors, item#{$i});
+            }
+        }
+
+        .title-list-tasks__text {
+            font-size: 18px;
+            background-color: inherit;
+            cursor: pointer;
+
+            &:focus {
+                cursor: text;
+            }
+        }
+
+        .title-list-tasks__remove {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            transition: opacity ease 0.5s;
+        }
+
+        &:hover .title-list-tasks__remove {
+            opacity: 1;
+        }
+    }
+
+    .title-list-tasks__add-btn {
+        color: color.$none-active-menu-item;
+        &::before {
+            content: '';
+            display: inline-flex;
+            background-image: url('../images/add.svg');
+            height: 14px;
+            width: 14px;
+            margin-right: 10px;
+            vertical-align: baseline;
+        }
+    }
+}
