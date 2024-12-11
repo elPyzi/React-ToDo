@@ -3,18 +3,15 @@ import '../assets/styles/MarkerList.scss';
 
 function MarkerList() {
     const [titleTasks, setTitleTasks] = useState([]);
-    const [addTitleTaskBtn, setAddTitleTaskBtn] = useState(true);
+    const [addTitleTaskBtn, setAddTitleTaskBtn] = useState(
+        titleTasks.length < 5,
+    );
     const [lastAddedTaskIndex, setLastAddedTaskIndex] = useState(null);
     const newTaskRefs = useRef([]);
 
     useEffect(() => {
         setAddTitleTaskBtn(titleTasks.length < 5);
     }, [titleTasks.length]);
-
-    // useEffect(() => {
-    //     const storageData = JSON.stringify(titleTasks);
-    //     localStorage.setItem('listTitleTasks', storageData);
-    // }, [titleTasks]);
 
     useEffect(() => {
         try {

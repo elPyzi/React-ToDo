@@ -7,6 +7,8 @@ import { useState } from 'react';
 function App() {
     const [toDo, setToDo] = useState(true);
     const [settings, setSettings] = useState(false);
+    const [userName, setUserName] = useState();
+    const [userStatus, setUserStatus] = useState();
 
     const getAsideAction = (button) => {
         const actions = {
@@ -22,11 +24,26 @@ function App() {
         return actions[button];
     };
 
+    const setInfo = (setUserInfo) => {
+        const updateInfo = {
+            name: (newUserInfo) => {
+                setUserName(newUserInfo);
+            },
+            status: (newUserInfo) => {
+                setUserStatus(newUserInfo);
+            },
+        };
+        return updateInfo[setUserInfo];
+    };
+
     return (
         <div className="app">
-            <AsideBar getAsideAction={getAsideAction} />
+            <AsideBar
+                getAsideAction={getAsideAction}
+                dataUserInfo={{ userName, userStatus }}
+            />
             {toDo && <ToDo />}
-            {settings && <Settings />}
+            {settings && <Settings setInfo={setInfo} />}
         </div>
     );
 }

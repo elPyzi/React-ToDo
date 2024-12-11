@@ -1,12 +1,21 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import '../assets/styles/AsideBar.scss';
 import Avatar from './Avatar';
 import MarkerList from './MarkersList';
 
-function AsideBar({ getAsideAction }) {
-    const userName = 'John Doe';
-    const userStatus = 'Love apples';
+function AsideBar({ getAsideAction, dataUserInfo }) {
+    const [userName, setUserName] = useState(
+        dataUserInfo.userName || 'Joe Doe',
+    );
+    const [userStatus, setUserStatus] = useState(
+        dataUserInfo.userStatus || 'Love Apples',
+    );
+
+    useEffect(() => {
+        setUserName(dataUserInfo.userName || 'Joe Doe');
+        setUserStatus(dataUserInfo.userStatus || 'Love Apples');
+    }, [dataUserInfo.userName, dataUserInfo.userStatus]);
 
     const [activeBtn, setActiveBtn] = useState('todo');
 
@@ -54,6 +63,7 @@ function AsideBar({ getAsideAction }) {
 
 AsideBar.propTypes = {
     getAsideAction: PropTypes.func.isRequired,
+    dataUserInfo: PropTypes.object,
 };
 
 export default AsideBar;

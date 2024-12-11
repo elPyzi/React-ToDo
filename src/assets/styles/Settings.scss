@@ -1,0 +1,50 @@
+@use 'colors' as color;
+
+.settings {
+    background-color: color.$color-content;
+    min-width: 80vw;
+    height: 100vh;
+    border: 7px solid color.$color-bg;
+    border-radius: 5px;
+    padding: 5%;
+    font-size: 18px;
+
+    .settings__container {
+        background-color: color.$color-bg;
+        border-radius: 10px;
+        padding: 20px;
+        width: 55%;
+        margin: auto;
+
+        .settings__profile {
+            display: flex;
+            flex-flow: column nowrap;
+            margin-bottom: 40px;
+            gap: 10px;
+
+            .settings__profile-heading {
+                margin-bottom: 20px;
+                font-weight: normal;
+            }
+
+            .settings__input {
+                background-color: inherit;
+                font-size: inherit;
+                padding: 1% 0;
+                color: color.$active-menu-item;
+                border-bottom: 2px solid color.$active-menu-item;
+
+                &::placeholder {
+                    color: color.$none-active-menu-item;
+                }
+            }
+        }
+
+        .settings__more {
+            p {
+                margin-top: 20px;
+                color: color.$none-active-menu-item;
+            }
+        }
+    }
+}

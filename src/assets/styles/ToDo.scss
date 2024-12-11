@@ -78,6 +78,7 @@
             gap: 15px;
 
             .to-do__time {
+                font-family: 'Montserrat', serif;
                 background-color: inherit;
                 font-size: 18px;
             }
@@ -85,6 +86,31 @@
     }
 
     .to-do__container-tasks {
+        .to-do__task {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            width: 60%;
+            padding: 14px 17px;
+            border-radius: 10px;
+            background-color: $color-bg;
+            margin-bottom: 50px;
+
+            .to-do__title {
+                @include filter-item(map-get($title-colors, item1));
+            }
+
+            .to-do__task-text {
+                font-size: inherit;
+                width: 100%;
+            }
+
+            .to-do__task-time {
+            }
+
+            .to-do__done {
+            }
+        }
     }
 }
 
