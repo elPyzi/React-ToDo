@@ -110,29 +110,51 @@
             box-shadow: 7px 7px $shadow-color;
 
             .to-do__title {
-
-                &.item1{
+                &.item1 {
                     @include filter-item(map-get($title-colors, item1));
                 }
-                &.item2{
+                &.item2 {
                     @include filter-item(map-get($title-colors, item2));
                 }
-                &.item3{
+                &.item3 {
                     @include filter-item(map-get($title-colors, item3));
                 }
-                &.item4{
+                &.item4 {
                     @include filter-item(map-get($title-colors, item4));
                 }
-                &.item5{
+                &.item5 {
                     @include filter-item(map-get($title-colors, item5));
                 }
-
             }
 
             .to-do__task-text {
                 font-size: inherit;
                 width: 100%;
             }
+        }
+        .to-do__done {
+            transition: all 0.1s;
+            &:hover {
+                color: #852614;
+            }
+        }
+    }
+
+    .to-do__pagination {
+        background-color: $color-bg;
+        border: 10px;
+        padding: 20px;
+        box-shadow: 7px 7px $shadow-color;
+        border-radius: 10px;
+        color: $active-menu-item;
+        display: flex;
+        gap: 10px;
+
+        .to-do__pagination-btn {
+            font-weight: 900;
+        }
+
+        .to-do__pagination-page {
         }
     }
 }
@@ -163,10 +185,8 @@
     .filter__dropdown-content {
         border-radius: 10px;
         padding: 20px;
-        // width: 95px;
         position: absolute;
         top: 85px;
-        // left: 0;
 
         background-color: $color-bg;
         box-shadow: 7px 7px $shadow-color;

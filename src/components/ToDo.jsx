@@ -7,6 +7,8 @@ function ToDo() {
     const [toDoList, setToDoList] = useState([]);
     const [color, setColor] = useState('item1');
     const [isActiveSelect, setActiveSelect] = useState(false);
+    const [currentPage, setCurrentPage] = useState(0);
+    const itemsPerPage = 5;
 
     useEffect(() => {
         if (toDoList.length === 0) {
@@ -44,7 +46,30 @@ function ToDo() {
     const removeTask = (taskId) => {
         const updatedTasks = toDoList.filter((tasks) => taskId !== tasks.id);
         setToDoList(updatedTasks);
+        if (
+            currentPage > 0 &&
+            updatedTasks.length <= currentPage * itemsPerPage
+        ) {
+            setCurrentPage(currentPage - 1);
+        }
     };
+
+    const handleNextPage = () => {
+        if ((currentPage + 1) * itemsPerPage < toDoList.length) {
+            setCurrentPage(currentPage + 1);
+        }
+    };
+
+    const handlePrevPage = () => {
+        if (currentPage > 0) {
+            setCurrentPage(currentPage - 1);
+        }
+    };
+
+    const paginatedTasks = toDoList.slice(
+        currentPage * itemsPerPage,
+        (currentPage + 1) * itemsPerPage,
+    );
 
     return (
         <div className="to-do">
@@ -115,9 +140,35 @@ function ToDo() {
                             </div>
                         )}
                     </div>
+                    {toDoList.length > itemsPerPage && (
+                        <div className="to-do__pagination">
+                            <button
+                                type="button"
+                                className="to-do__pagination-btn"
+                                onClick={handlePrevPage}
+                                disabled={currentPage === 0}
+                            >
+                                &lt;
+                            </button>
+                            <span className="to-do__pagination-page">
+                                {currentPage + 1}
+                            </span>
+                            <button
+                                type="button"
+                                className="to-do__pagination-btn"
+                                onClick={handleNextPage}
+                                disabled={
+                                    (currentPage + 1) * itemsPerPage >=
+                                    toDoList.length
+                                }
+                            >
+                                &gt;
+                            </button>
+                        </div>
+                    )}
                 </div>
                 <ul className="to-do__container-tasks">
-                    {toDoList.map((task) => (
+                    {paginatedTasks.map((task) => (
                         <li key={task.id} className="to-do__task">
                             <div>
                                 <div
@@ -128,7 +179,7 @@ function ToDo() {
                             <div className="to-do__task-time">{task.time}</div>
                             <button
                                 type="button"
-                                className={`to-do__done`}
+                                className="to-do__done"
                                 onClick={() => removeTask(task.id)}
                             >
                                 done
