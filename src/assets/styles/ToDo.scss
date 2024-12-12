@@ -1,8 +1,8 @@
 @use 'colors' as *;
 
 @mixin filter-item($color) {
-    width: 15px;
-    height: 15px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     background-color: $color;
 }
@@ -33,6 +33,12 @@
         margin: auto;
     }
 
+    .to-do__filter-input {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 50px;
+    }
+
     .to-do__input-container {
         display: flex;
         justify-content: space-between;
@@ -41,25 +47,31 @@
         padding: 14px 17px;
         border-radius: 10px;
         background-color: $color-bg;
-        margin-bottom: 50px;
+        box-shadow: 7px 7px $shadow-color;
 
-        .to-do__filter {
-            display: flex;
-            align-items: center;
-            gap: 5px;
+        // .to-do__type {
+        //     display: flex;
+        //     align-items: center;
+        //     gap: 5px;
 
-            .to-do__filter-item:nth-child(1) {
-                @include filter-item(map-get($title-colors, item1));
-            }
+        //     .to-do__type-item:nth-child(1) {
+        //         @include filter-item(map-get($title-colors, item1));
+        //     }
 
-            .to-do__filter-item:nth-child(2) {
-                @include filter-item(map-get($title-colors, item2));
-            }
+        //     .to-do__type-item:nth-child(2) {
+        //         @include filter-item(map-get($title-colors, item2));
+        //     }
 
-            .to-do__filter-item:nth-child(3) {
-                @include filter-item(map-get($title-colors, item3));
-            }
-        }
+        //     .to-do__type-item:nth-child(3) {
+        //         @include filter-item(map-get($title-colors, item3));
+        //     }
+        //     .to-do__type-item:nth-child(4) {
+        //         @include filter-item(map-get($title-colors, item4));
+        //     }
+        //     .to-do__type-item:nth-child(5) {
+        //         @include filter-item(map-get($title-colors, item5));
+        //     }
+        // }
 
         .to-do_input {
             background-color: inherit;
@@ -94,21 +106,89 @@
             padding: 14px 17px;
             border-radius: 10px;
             background-color: $color-bg;
-            margin-bottom: 50px;
+            margin-bottom: 20px;
+            box-shadow: 7px 7px $shadow-color;
 
             .to-do__title {
-                @include filter-item(map-get($title-colors, item1));
+
+                &.item1{
+                    @include filter-item(map-get($title-colors, item1));
+                }
+                &.item2{
+                    @include filter-item(map-get($title-colors, item2));
+                }
+                &.item3{
+                    @include filter-item(map-get($title-colors, item3));
+                }
+                &.item4{
+                    @include filter-item(map-get($title-colors, item4));
+                }
+                &.item5{
+                    @include filter-item(map-get($title-colors, item5));
+                }
+
             }
 
             .to-do__task-text {
                 font-size: inherit;
                 width: 100%;
             }
+        }
+    }
+}
 
-            .to-do__task-time {
+.filter {
+    position: relative;
+    background-color: $color-bg;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 7px 7px $shadow-color;
+    cursor: pointer;
+
+    .filter__btn {
+        display: flex;
+        gap: 5px;
+
+        .filter__item:nth-child(1) {
+            @include filter-item(map-get($title-colors, item1));
+        }
+        .filter__item:nth-child(2) {
+            @include filter-item(map-get($title-colors, item2));
+        }
+        .filter__item:nth-child(3) {
+            @include filter-item(map-get($title-colors, item3));
+        }
+    }
+
+    .filter__dropdown-content {
+        border-radius: 10px;
+        padding: 20px;
+        // width: 95px;
+        position: absolute;
+        top: 85px;
+        // left: 0;
+
+        background-color: $color-bg;
+        box-shadow: 7px 7px $shadow-color;
+
+        .filter__dropdown-item {
+            margin-bottom: 10px;
+
+            &:nth-child(1) {
+                @include filter-item(map-get($title-colors, item1));
             }
-
-            .to-do__done {
+            &:nth-child(2) {
+                @include filter-item(map-get($title-colors, item2));
+            }
+            &:nth-child(3) {
+                @include filter-item(map-get($title-colors, item3));
+            }
+            &:nth-child(4) {
+                @include filter-item(map-get($title-colors, item4));
+            }
+            &:nth-child(5) {
+                @include filter-item(map-get($title-colors, item5));
+                margin-bottom: 0;
             }
         }
     }
